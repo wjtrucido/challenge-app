@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './modules/user/user.module';
 import { RoleModule } from './modules/role/role.module';
+import { ServiceModule } from './modules/service/service.module';
 import { SeederService } from './seeders/seeder.service';
 
 @Module({
@@ -17,6 +18,7 @@ import { SeederService } from './seeders/seeder.service';
     }),
     UserModule,
     RoleModule,
+    ServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService, SeederService],
