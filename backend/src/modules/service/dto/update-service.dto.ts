@@ -5,9 +5,9 @@ import { IsBoolean, IsOptional, IsString } from 'class-validator';
 export class UpdateServiceDto extends PartialType(CreateServiceRequestDto) {
   @IsOptional()
   @IsString()
-  readonly description?: string;
+  description?: string;
 
   @IsOptional()
   @IsBoolean()
-  readonly active?: boolean;
+  active?: boolean;
 }

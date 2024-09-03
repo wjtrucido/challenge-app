@@ -12,7 +12,7 @@ import { ServiceRepository } from '../repository/service.repository';
 
 @Injectable()
 export class ServiceService {
-  constructor(private readonly serviceRepository: ServiceRepository) {}
+  constructor(private readonly serviceRepository: ServiceRepository) { }
 
   async create(createServiceDto: CreateServiceRequestDto): Promise<Service> {
     const foundServiceWithSameDescription = await this.serviceRepository.findBy(
@@ -72,9 +72,5 @@ export class ServiceService {
     }
 
     return this.serviceRepository.update(serviceId, updateServiceDto);
-  }
-
-  async remove(id: string): Promise<void> {
-    await this.serviceRepository.remove(id);
   }
 }

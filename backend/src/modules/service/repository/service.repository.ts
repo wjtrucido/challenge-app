@@ -9,10 +9,12 @@ import { Service } from '../entity/service.entity';
 
 @Injectable()
 export class ServiceRepository {
-  constructor(@InjectModel(Service.name) private userModel: Model<Service>) { }
+  constructor(
+    @InjectModel(Service.name) private serviceModel: Model<Service>,
+  ) { }
 
   async create(createUserDto: CreateServiceRequestDto): Promise<Service> {
-    const createdUser = new this.userModel(createUserDto);
+    const createdUser = new this.serviceModel(createUserDto);
     return await createdUser.save();
   }
 
@@ -21,8 +23,8 @@ export class ServiceRepository {
     limit,
   }: PaginationParamsDto): Promise<PaginatedResponseDto<Service>> {
     const skip = (page - 1) * limit;
-    const totalCount = await this.userModel.countDocuments();
-    const data = await this.userModel.find().skip(skip).limit(limit).exec();
+    const totalCount = await this.serviceModel.countDocuments();
+    const data = await this.serviceModel.find().skip(skip).limit(limit).exec();
     return {
       totalItems: totalCount,
       currentPage: page,
@@ -33,20 +35,18 @@ export class ServiceRepository {
   }
 
   async findById(id: string): Promise<Service> {
-    return this.userModel.findById(id).exec();
+    return this.serviceModel.findById(id).exec();
   }
 
   async findBy(fields: FilterQuery<Service>): Promise<Service> {
-    return this.userModel.findOne(fields).exec();
+    return this.serviceModel.findOne(fields).exec();
   }
 
   async update(id: string, updateUserDto: UpdateServiceDto): Promise<Service> {
-    return this.userModel
-      .findByIdAndUpdate(id, updateUserDto, { new: true })
+    return this.serviceModel
+      .findByIdAndUpdate({ _id: id, active: true }, updateUserDto, {
+        new: true,
+      })
       .exec();
-  }
-
-  async remove(id: string): Promise<void> {
-    await this.userModel.deleteOne({ _id: id }).exec();
   }
 }
