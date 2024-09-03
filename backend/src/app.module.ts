@@ -6,6 +6,7 @@ import { UserModule } from './modules/user/user.module';
 import { RoleModule } from './modules/role/role.module';
 import { ServiceModule } from './modules/service/service.module';
 import { SeederService } from './seeders/seeder.service';
+import { ClientModule } from './modules/client/client.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { SeederService } from './seeders/seeder.service';
     UserModule,
     RoleModule,
     ServiceModule,
+    ClientModule,
   ],
   controllers: [AppController],
   providers: [AppService, SeederService],
