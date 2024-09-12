@@ -1,11 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { IsDateString } from 'class-validator';
+import { IsDateString, IsMongoId } from 'class-validator';
 
 @Schema()
 export class Reservation extends Document {
-  @Prop({ require: true, ref: 'Client' })
-  client: Types.ObjectId;
+  //@Prop({ require: true, ref: 'Reservation' })
+  //reservation: Types.ObjectId;
+
+  @Prop({ require: true, ref: 'client' })
+  @IsMongoId()
+  clientId: Types.ObjectId;
+
+  @Prop({ require: true, ref: 'Service' })
+  serviceId: Types.ObjectId;
 
   @Prop({ require: true })
   @IsDateString()
@@ -13,9 +20,9 @@ export class Reservation extends Document {
 
   @Prop({ require: true })
   @IsDateString()
-  hour: Date;
+  hour: string;
 
-  @Prop({ require: true })
+  @Prop()
   duration: string;
 
   @Prop({ default: false })
