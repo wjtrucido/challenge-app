@@ -52,7 +52,6 @@ export class ClientService {
     updateClientDto: UpdateClientDto,
   ): Promise<client> {
     const foundClient = await this.clientRepository.findById(clientId);
-    console.log('FFFF', foundClient);
     if (!foundClient) {
       throw new NotFoundException(`client with ID ${clientId} not found`);
     }

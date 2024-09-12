@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import { Container } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
+import React from "react";
+import ReservationsTable from "./components/ReservationsTable";
+import styled from "styled-components";
 
-function App() {
-  const [count, setCount] = useState(0)
+const CenteredContainer = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+`;
 
+const Title = styled.h2`
+  margin-top: 20px; 
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+const App: React.FC = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <CenteredContainer fluid>
+        <Title>Reservaciones</Title>
+        <ReservationsTable />
+      </CenteredContainer>
+      <ToastContainer position="top-right" autoClose={1000} />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
