@@ -337,8 +337,8 @@ const ReservationsTable: React.FC = () => {
               {filteredReservations.map((item, index: number) => (
                 <>
                   <tr key={index}>
-                    <td>{item.clientId.fullName}</td>
-                    <td>{item.serviceId.description}</td>
+                    <td>{item.clientId?.fullName || "No disponible"}</td>
+                    <td>{item.serviceId?.description || "No disponible"}</td>
                     <td>{item.date.split("T")[0]}</td>
                     <td>{item.hour}</td>
                     <td>{item.duration} min</td>

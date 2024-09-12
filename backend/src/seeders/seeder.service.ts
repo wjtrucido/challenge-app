@@ -27,7 +27,6 @@ export class SeederService implements OnModuleInit {
     await this.seedUsers();
     await this.seedServices();
     await this.seedClients();
-    await this.seedReservations();
   }
 
   async seedRoles() {
